@@ -120,15 +120,6 @@ See the reason why and some alternatives [here](https://source.android.com/sourc
 
 _We don't use finalizers. There are no guarantees as to when a finalizer will be called, or even that it will be called at all. In most cases, you can do what you need from a finalizer with good exception handling. If you absolutely need it, define a `close()` method (or the like) and document exactly when that method needs to be called. See `InputStream` for an example. In this case it is appropriate but not required to print a short log message from the finalizer, as long as it is not expected to flood the logs._ - ([Android code style guidelines](https://source.android.com/source/code-style.html#dont-use-finalizers))
 
-
-### 2.1.4 Fully qualify imports
-
-This is bad: `import foo.*;`
-
-This is good: `import foo.Bar;`
-
-See more info [here](https://source.android.com/source/code-style.html#fully-qualify-imports)
-
 ## 2.2 Java style rules
 
 ### 2.2.1 Fields definition and naming
