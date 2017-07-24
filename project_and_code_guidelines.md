@@ -193,10 +193,16 @@ Braces around the statements are required unless the condition and the body fit 
 If the condition and the body fit on one line and that line is shorter than the max line length, then braces are not required, e.g.
 
 ```java
-if (condition) body();
+if (condition) {
+    body();
+}
 ```
 
 This is __bad__:
+
+```java
+if (condition) body();
+```
 
 ```java
 if (condition)
@@ -230,10 +236,12 @@ public class MyAnnotatedClass { }
 
 __Fields__
 
-Annotations applying to fields should be listed __on the same line__, unless the line reaches the maximum line length.
+Annotations applying to fields should be listed __on the next line__, unless the line reaches the maximum line length.
 
 ```java
-@Nullable @Mock DataManager mDataManager;
+@Nullable 
+@Mock
+DataManager mDataManager;
 ```
 
 ### 2.2.7 Limit variable scope
@@ -274,7 +282,7 @@ As a general rule, we use the class name as tag and we define it as a `static fi
 
 ```java
 public class MyClass {
-    private static final String TAG = MyClass.class.getSimpleName();
+    private static final String TAG = MyClass.class.getName();
 
     public myMethod() {
         Log.e(TAG, "My error message");
@@ -377,8 +385,8 @@ When using one of these components, you __must__ define the keys as a `static fi
 | -----------------  | ----------------- |
 | SharedPreferences  | `PREF_`             |
 | Bundle             | `BUNDLE_`           |
-| Fragment Arguments | `ARGUMENT_`         |
-| Intent Extra       | `EXTRA_`            |
+| Fragment Arguments | `ARG_`         	   |
+| Intent Extra       | `EX_`           	   |
 | Intent Action      | `ACTION_`           |
 
 Note that the arguments of a Fragment - `Fragment.getArguments()` - are also a Bundle. However, because this is a quite common use of Bundles, we define a different prefix for them.
@@ -402,10 +410,10 @@ When data is passed into an `Activity `or `Fragment` via an `Intent` or a `Bundl
 
 When an `Activity` or `Fragment` expects arguments, it should provide a `public static` method that facilitates the creation of the relevant `Intent` or `Fragment`.
 
-In the case of Activities the method is usually called `getStartIntent()`:
+In the case of Activities the method is usually called `getCallingIntent()`:
 
 ```java
-public static Intent getStartIntent(Context context, User user) {
+public static Intent getCallingIntent(Context context, User user) {
 	Intent intent = new Intent(context, ThisActivity.class);
 	intent.putParcelableExtra(EXTRA_USER, user);
 	return intent;
@@ -524,7 +532,7 @@ This is good:
 
 ```xml
 <TextView
-	android:id="@+id/text_view_profile"
+	android:id="@+id/tv_profile"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content" />
 ```
@@ -552,16 +560,16 @@ IDs should be prefixed with the name of the element in lowercase underscore. For
 
 | Element            | Prefix            |
 | -----------------  | ----------------- |
-| `TextView`           | `text_`             |
-| `ImageView`          | `image_`            |
-| `Button`             | `button_`           |
+| `TextView`           | `tv_`         	     |
+| `ImageView`          | `iv_`               |
+| `Button`             | `btn_`     	     |
 | `Menu`               | `menu_`             |
 
 Image view example:
 
 ```xml
 <ImageView
-    android:id="@+id/image_profile"
+    android:id="@+id/iv_profile"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" />
 ```
